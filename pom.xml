@@ -13,7 +13,8 @@
 	<modules>
 		<module>java-eg-base</module>
 		<module>java-eg-security</module>
-	</modules>
+        <module>java-eg-web</module>
+    </modules>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

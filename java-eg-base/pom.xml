@@ -10,11 +10,7 @@
 	</parent>
 
 	<artifactId>java-eg-base</artifactId>
-	<name>java-eg-base</name>
-
-	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-	</properties>
+	<name>java基础模块实例</name>
 
 	<dependencies>
 		<dependency>

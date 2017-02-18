@@ -10,7 +10,7 @@
 	</parent>
 
 	<artifactId>java-eg-security</artifactId>
-	<name>java-eg-security</name>
+	<name>java安全模块实例</name>
 
 	<dependencies>
 
