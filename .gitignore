@@ -16,5 +16,9 @@ target/
 .settings/
 
 #eclipse files
-.classpath
-.project
+*.classpath
+*.project
+
+#intelliJ IDEA
+*.iml
+.idea/
