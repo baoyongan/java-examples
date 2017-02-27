@@ -12,6 +12,7 @@
 hs_err_pid*
 
 #files
+classes/
 target/
 .settings/
 

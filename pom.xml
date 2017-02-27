@@ -14,6 +14,7 @@
 		<module>java-eg-base</module>
 		<module>java-eg-security</module>
         <module>java-eg-web</module>
+        <module>java-eg-pattern</module>
     </modules>
 
 	<properties>
