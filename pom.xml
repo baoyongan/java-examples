@@ -15,7 +15,8 @@
 		<module>java-eg-security</module>
         <module>java-eg-web</module>
         <module>java-eg-pattern</module>
-    </modules>
+		<module>java-eg-logback</module>
+	</modules>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
