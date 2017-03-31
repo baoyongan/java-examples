@@ -4,4 +4,23 @@
 
 <web-app>
   <display-name>eg-web</display-name>
+
+  <!-- 在应用关闭和重启的时候关闭logback-classic,释放资源-->
+  <context-param>
+    <param-name>logbackDisableServletContainerInitializer</param-name>
+    <param-value>true</param-value>
+  </context-param>
+
+  <!--打印日志状态信息-->
+  <servlet>
+    <servlet-name>ViewStatusMessages</servlet-name>
+    <servlet-class>ch.qos.logback.classic.ViewStatusMessagesServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>ViewStatusMessages</servlet-name>
+    <url-pattern>/lbClassicStatus</url-pattern>
+  </servlet-mapping>
+
+
 </web-app>
