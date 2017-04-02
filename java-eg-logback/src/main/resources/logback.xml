@@ -1,0 +1,34 @@
+<configuration packagingData="true">
+
+    <!-- 动态定义变量-->
+    <define  name="EnvProfile" class="com.baoyongan.java.eg.logback.chapter3.EnvironmentPropertiesDefine">
+    </define>
+
+    <appender name="FILE" class="ch.qos.logback.core.FileAppender">
+        <file>foo.log</file>
+        <encoder>
+            <pattern>%date %level [%thread] %logger{10} [%file : %line] %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%msg%n</pattern>
+        </encoder>
+    </appender>
+
+
+    <if condition='property("EnvProfile").equals("dev")'>
+        <then>
+            <root level="debug">
+                <appender-ref ref="STDOUT" />
+            </root>
+        </then>
+        <else>
+            <root level="debug">
+                <appender-ref ref="FILE" />
+            </root>
+        </else>
+    </if>
+
+</configuration>

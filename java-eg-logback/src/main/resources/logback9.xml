@@ -1,0 +1,17 @@
+<configuration>
+
+    <!-- 定义替换变量-->
+    <!--或者通过进程变量 java -DUSER_HOME="D:\\log" -->
+    <property name="USER_HOME" value="D:\\log" />
+
+    <appender name="FILE" class="ch.qos.logback.core.FileAppender">
+        <file>${USER_HOME}/myApp.log</file>
+        <encoder>
+            <pattern>%msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <root level="debug">
+        <appender-ref ref="FILE" />
+    </root>
+</configuration>
