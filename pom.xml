@@ -16,7 +16,8 @@
         <module>java-eg-web</module>
         <module>java-eg-pattern</module>
 		<module>java-eg-logback</module>
-	</modules>
+        <module>java-eg-quartz</module>
+    </modules>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
