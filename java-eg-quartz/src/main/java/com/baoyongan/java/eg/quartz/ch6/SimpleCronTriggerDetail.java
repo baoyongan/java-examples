@@ -60,61 +60,25 @@ public class SimpleCronTriggerDetail {
                     .withIdentity("myJob")
                     .build();
 
-            String timeStr="2017-05-15 19:12:06";
-            SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            Date time=sdf.parse(timeStr);
-            // 1、在特定的时间运行，没有重复运行
-            /*Trigger trigger = newTrigger()
-                    .withIdentity("myTrigger")
-                    .forJob("myJob")
-                    .startAt(time) // 不指定开始时间,默认就是“now”
-                    .build();*/
-
-            // 2、在特定的时间运行，重复执行3次，一次间隔5秒  可以测试job注解@DisallowConcurrentExecution
-           /* Trigger trigger = newTrigger()
-                    .withIdentity("myTrigger")
-                    .forJob("myJob")
-                    // .startAt(time) // 不指定开始时间,默认就是“now”
-                    .withSchedule(simpleSchedule()
-                            .withIntervalInSeconds(5)
-                            .withRepeatCount(3)) // 重复三次加上第一次就是一共4 次
-                    .build();*/
-
-            // 3、在10秒之后执行一次
-           /* Trigger trigger = newTrigger()
-                    .withIdentity("myTrigger")
-                    .forJob("myJob")
-                    .startAt(DateBuilder.futureDate(10, DateBuilder.IntervalUnit.SECOND)) // 使用DateBuilder构建时间
-                    .build();*/
-
-            // 4、立即执行，然后5秒执行一次，直到某个时间
+            // 1、eg
            /*Trigger trigger = newTrigger()
                     .withIdentity("myTrigger")
                     .forJob("myJob")
-                    .withSchedule(simpleSchedule()
-                            .withIntervalInSeconds(10)
-                            .repeatForever())
-                    .endAt(DateBuilder.dateOf(19,38,00))
+                    .withSchedule(CronScheduleBuilder.cronSchedule("0 0/2 8-17 * * ?"))
                     .build();*/
 
-            // 5、在整分钟的时候执行，然后每一分钟执行一次
-          /* Trigger trigger = newTrigger()
-                    .withIdentity("myTrigger")
-                    // .forJob("myJob") // 不指定job,需要在调度器的地方一块传参
-                    .startAt(DateBuilder.evenMinuteDate(null))
-                    .withSchedule(simpleSchedule()
-                            .withIntervalInMinutes(1)
-                            .repeatForever())
-                    .build();*/
-
-            // 6、指定misfire情况下的策略
-           Trigger trigger = newTrigger()
+            // 2、eg
+           /*Trigger trigger = newTrigger()
                     .withIdentity("myTrigger")
                     .forJob("myJob")
-                    .withSchedule(simpleSchedule()
-                            .withIntervalInSeconds(5)
-                            .withRepeatCount(3) 
-                            .withMisfireHandlingInstructionIgnoreMisfires())// 策略忽略掉错过执行的
+                    .withSchedule(CronScheduleBuilder.dailyAtHourAndMinute(9,32))
+                    .build();*/
+
+            // 3、eg
+            Trigger trigger = newTrigger()
+                    .withIdentity("myTrigger")
+                    .forJob("myJob")
+                    .withSchedule(CronScheduleBuilder.weeklyOnDayAndHourAndMinute(DateBuilder.WEDNESDAY,9,36))
                     .build();
 
             // Tell quartz to schedule the job using our trigger
@@ -126,8 +90,6 @@ public class SimpleCronTriggerDetail {
         } catch (SchedulerException se) {
             se.printStackTrace();
         } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ParseException e) {
             e.printStackTrace();
         }
     }
