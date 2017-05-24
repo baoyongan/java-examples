@@ -18,6 +18,7 @@
 		<module>java-eg-logback</module>
         <module>java-eg-quartz</module>
 		<module>java-eg-thread</module>
+        <module>java-eg-swing</module>
     </modules>
 
 	<properties>
