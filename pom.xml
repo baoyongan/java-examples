@@ -19,7 +19,9 @@
         <module>java-eg-quartz</module>
 		<module>java-eg-thread</module>
         <module>java-eg-swing</module>
-    </modules>
+		<module>java-eg-hession-client</module>
+		<module>java-eg-hession-server</module>
+	</modules>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
