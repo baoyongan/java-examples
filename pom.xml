@@ -21,6 +21,7 @@
         <module>java-eg-swing</module>
 		<module>java-eg-hession-client</module>
 		<module>java-eg-hession-server</module>
+		<module>java-eg-springmvc</module>
 	</modules>
 
 	<properties>
