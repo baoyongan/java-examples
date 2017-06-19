@@ -2,6 +2,7 @@ package com.bya.test;
 
 import base.BaseTest;
 import com.bya.remote.HelloWorld;
+import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.remoting.caucho.HessianProxyFactoryBean;
@@ -15,6 +16,7 @@ public class HelloWordTest extends BaseTest {
     @Qualifier("helloService")
     private HessianProxyFactoryBean helloService;
 
+    @Test
     public void helloTest(){
        HelloWorld helloWorld= (HelloWorld) helloService.getObject();
        helloWorld.sayHello("baozi");
