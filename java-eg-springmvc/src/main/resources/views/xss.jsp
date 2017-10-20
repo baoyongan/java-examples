@@ -4,11 +4,15 @@
 <head>
 
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-    <title>@ControllerAdvice Demo</title>
+    <title>@xss Demo</title>
 
 </head>
 <body>
+<form action="#">
+    <input type="text" placeholder="请输入名字" name="name" onblur="document.getElementById('sss').innerHTML=this.value"/>
+    <div id="sss"></div>
 
-    ${errorMessage} <!-- EL表达式不生效，上面的uri不能解析-->
+</form>
+
 </body>
 </html>

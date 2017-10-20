@@ -48,6 +48,7 @@ public class MyMvcConfig001 extends WebMvcConfigurerAdapter{
     public void addViewControllers(ViewControllerRegistry registry) {
         // 无业务的页面跳转
         registry.addViewController("/nihao").setViewName("index");
+        registry.addViewController("/xss").setViewName("xss");
     }
 
     // 请求路径匹配

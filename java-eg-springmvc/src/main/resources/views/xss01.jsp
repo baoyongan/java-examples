@@ -4,11 +4,13 @@
 <head>
 
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-    <title>@ControllerAdvice Demo</title>
+    <title>@xss Demo</title>
 
 </head>
 <body>
+    <dl>
+        <dt>name:</dt><dt>${name}</dt>
+    </dl>
 
-    ${errorMessage} <!-- EL表达式不生效，上面的uri不能解析-->
 </body>
 </html>
