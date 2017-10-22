@@ -1,6 +1,4 @@
 package com.baoyongan.java.eg.thread;
-
-import javax.sound.midi.Soundbank;
 import java.util.concurrent.Semaphore;
 
 /**
@@ -10,44 +8,58 @@ import java.util.concurrent.Semaphore;
  * Created by bqct_bya on 2017/10/11.
  */
 public class SemaphoreEg {
- private static final int MAX_AVAILABLE=1;
-// private final Semaphore available=new Semaphore(MAX_AVAILABLE,true);
+ private static final int MAX_AVAILABLE = 1;
+ // private final Semaphore available=new Semaphore(MAX_AVAILABLE,true);
 
  public static void main(String[] args) {
-  final Semaphore available=new Semaphore(MAX_AVAILABLE,true);
+  final Semaphore available = new Semaphore(MAX_AVAILABLE, true);
   System.out.println(available.availablePermits());
-  Thread thread1=new Thread(new Runnable() {
+  Thread thread1 = new Thread(new Runnable() {
    @Override
    public void run() {
     try {
      available.acquire();
      System.out.println("get thread111111111111");
+     available.release();
+     System.out.println("release thread111111111111");
     } catch (InterruptedException e) {
      e.printStackTrace();
     }
    }
-  },"thread111111111111");
+  }, "thread111111111111");
 
-  Thread thread2=new Thread(new Runnable() {
+  Thread thread2 = new Thread(new Runnable() {
    @Override
    public void run() {
     try {
      available.acquire();
      System.out.println("get thread222222222222");
+     available.release();
     } catch (InterruptedException e) {
      e.printStackTrace();
     }
    }
-  },"thread222222222222");
+  }, "thread222222222222");
+
+  Thread thread3 = new Thread(new Runnable() {
+   @Override
+   public void run() {
+    try {
+     available.acquire();
+     System.out.println("get thread33333333333");
+     available.release();
+    } catch (InterruptedException e) {
+     e.printStackTrace();
+    }
+   }
+  }, "thread33333333333");
   thread1.start();
   thread2.start();
-
+  thread3.start();
+  available.release(); // release 会一直增加
+  System.out.println(available.availablePermits());
   System.out.println("over");
 
-
  }
 
-
-
- }
-
+}
