@@ -13,6 +13,7 @@
 
     <properties>
         <spring-version>4.3.9.RELEASE</spring-version>
+        <failOnMissingWebXml>false</failOnMissingWebXml>
     </properties>
 
     <dependencies>
