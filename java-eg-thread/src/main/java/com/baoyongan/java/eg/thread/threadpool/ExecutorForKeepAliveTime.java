@@ -14,7 +14,7 @@ public class ExecutorForKeepAliveTime {
 		 */
 		// 下面这个例子是core=1 max=3 keepAliveTime=3s queueSize=1
 		// 我们可以看到在-----3-----结束后等了3s，线程池的线程数变成了1
-		ThreadPoolExecutor executors=new ThreadPoolExecutor(1, 3,3L, TimeUnit.SECONDS,new LinkedBlockingQueue<Runnable>(1));
+		ThreadPoolExecutor executors=new ThreadPoolExecutor(1, 2,3L, TimeUnit.SECONDS,new LinkedBlockingQueue<Runnable>(1));
 		
 		executors.execute(new Runnable() {
 			
@@ -54,6 +54,19 @@ public class ExecutorForKeepAliveTime {
 				}
 			}
 		});
+
+		/*executors.execute(new Runnable() {
+
+			@Override
+			public void run() {
+				try {
+					Thread.sleep(5000);
+					System.out.println("-----4-----over");
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+			}
+		});*/
 		
 		System.out.println("=======================================================");
 		for (int i = 0; i < 50; i++) {
