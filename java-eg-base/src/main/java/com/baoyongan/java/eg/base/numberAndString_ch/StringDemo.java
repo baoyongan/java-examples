@@ -23,5 +23,9 @@ public class StringDemo {
         String reversePalindrome =
                 new String(charArray);
         System.out.println(reversePalindrome);
+
+        StringBuilder sb;
+
+        StringBuffer sbb;
     }
 }
