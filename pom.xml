@@ -23,6 +23,7 @@
 		<module>java-eg-hession-server</module>
 		<module>java-eg-springmvc</module>
 		<module>java-eg-mongo</module>
+		<module>java-eg-springmvcxml</module>
 	</modules>
 
 	<properties>
@@ -53,7 +54,7 @@
 	</dependencyManagement>
 	-->
 
-	<build>
+	<!--<build>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -72,7 +73,7 @@
 				</configuration>
 			</plugin>
 		</plugins>
-	</build>
+	</build>-->
 
 	<!-- 配置仓库地址 -->
 	<!-- <repositories> -->
