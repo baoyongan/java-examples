@@ -54,7 +54,7 @@
 	</logger>
 	
 	<logger name="org.springframework" >
-		<level value="debug" />
+		<level value="trace" />
 	</logger>
 
     <root level="debug">

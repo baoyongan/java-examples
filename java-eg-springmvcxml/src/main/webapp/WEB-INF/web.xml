@@ -13,6 +13,20 @@
         <param-name>contextConfigLocation</param-name>
         <param-value>classpath*:root-context.xml</param-value>
     </context-param>
+    
+    <filter>
+        <filter-name>SelfFilter</filter-name>
+        <filter-class>com.bya.web.common.filter.SelfFilter</filter-class>
+        <init-param>
+            <param-name>filterOwner</param-name>
+            <param-value>bya</param-value>
+        </init-param>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>SelfFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
 
     <servlet>
         <servlet-name>app1</servlet-name>
@@ -34,6 +48,11 @@
         <load-on-startup>2</load-on-startup>
     </servlet>
 
+    <servlet>
+        <servlet-name>DefaultServletHandler</servlet-name>
+        <servlet-class>com.bya.web.common.servlet.DefaultServletHandler</servlet-class>
+    </servlet>
+
 
     <servlet-mapping>
         <servlet-name>app1</servlet-name>
@@ -45,5 +64,8 @@
         <url-pattern>/app2/*</url-pattern>
     </servlet-mapping>
 
+    <error-page>
+        <location>/app2/error</location>
+    </error-page>
 
 </web-app>

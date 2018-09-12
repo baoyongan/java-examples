@@ -12,7 +12,7 @@
     <mvc:annotation-driven />
 
 
-    <!-- 访问静态资源 -->
+    <!--这允许映射DispatcherServlet到“/”（从而覆盖容器的默认Servlet的映射），同时仍然允许容器的默认Servlet处理静态资源请求。-->
     <mvc:default-servlet-handler />
 
 
@@ -21,9 +21,27 @@
         <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
     </context:component-scan>
 
+    <mvc:view-controller path="/loginindex" view-name="form1" />
+    
     <!-- 视图解析器 -->
-    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-        <property name="prefix" value="/WEB-INF/classes/views/app2/"></property>    <!--这里的classes 相当于resources目录下 编译之后的路径位置-->
-        <property name="suffix" value=".jsp"></property>
-    </bean>
+    
+    <mvc:view-resolvers>
+        <!--本身不解析视图，而是委托给其他视图解析器，并选择类似于客户端请求的表示的视图。可以从Accept标题或查询参数确定表示，例如"/path?format=pdf"。-->
+        <mvc:content-negotiation>
+            <mvc:default-views>
+                <bean class="org.springframework.web.servlet.view.json.MappingJackson2JsonView" />
+            </mvc:default-views>
+        </mvc:content-negotiation>
+
+        <!--<mvc:freemarker/>-->
+
+        <!--InternalResourceViewResolver必须始终将其配置为视图解析器的整体顺序中的最后一个-->
+        <mvc:jsp prefix="/WEB-INF/classes/views/app2/" view-class="org.springframework.web.servlet.view.JstlView"/>
+
+    </mvc:view-resolvers>
+
+    <!--<mvc:freemarker-configurer>-->
+        <!--<mvc:template-loader-path location="" />-->
+    <!--</mvc:freemarker-configurer>-->
+
 </beans>
