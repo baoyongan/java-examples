@@ -8,12 +8,16 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.concurrent.atomic.AtomicLong;
 
 //@WebServlet(name = "LoginServlet",urlPatterns = {"login"})
 public class LoginServlet extends HttpServlet {
 
     private Logger log= LoggerFactory.getLogger(LoginServlet.class);
+
+    private Object og=new Object();
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String name=request.getParameter("name");
@@ -23,7 +27,21 @@ public class LoginServlet extends HttpServlet {
         // todo login
 
         request.getSession().setAttribute("user",name);
-        response.sendRedirect("welcome.jsp");
+        HttpSession session=request.getSession();
+        long now;
+        synchronized (og){
+          AtomicLong times= (AtomicLong) session.getAttribute("times");
+          if(null==times){
+              times=new AtomicLong(1);
+              now=1;
+          }
+          else{
+              now=times.incrementAndGet();
+          }
+            session.setAttribute("times",times);
+        }
+        System.out.println(session.getId()+" TIMES "+now);
+        response.sendRedirect(response.encodeURL("welcome.jsp")); // 自动判断是否禁用cookie加上sessionid
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
