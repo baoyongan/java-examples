@@ -26,6 +26,7 @@
 		<module>java-eg-springmvcxml</module>
         <module>java-eg-shiro</module>
         <module>java-eg-spring</module>
+        <module>java-eg-shiro-web</module>
     </modules>
 
 	<properties>
