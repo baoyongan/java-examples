@@ -1,25 +1,27 @@
-package com.baoyongan;
+package com.baoyongan.scheduler;
 
-import com.baoyongan.bean.Foo;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-public class BaseTest {
+public class SchedulerServiceTest{
 
     public ApplicationContext context;
 
     @Before()
     public void initSpring(){
-        context=new ClassPathXmlApplicationContext("classpath:*.xml");
+        context=new ClassPathXmlApplicationContext("classpath:scheduler/scheduler.xml");
     }
 
     @Test
-    public void FooTest(){
-         Foo foo= context.getBean(Foo.class);
-         foo.handleLocation();
+    public void schedulerTest(){
+        try {
+            Thread.sleep(20000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     @After
