@@ -50,6 +50,7 @@ public class LoginServlet extends HttpServlet {
             req.setAttribute("error", error);
             req.getRequestDispatcher("/WEB-INF/jsp/login.jsp").forward(req, resp);
         } else {//登录成功
+            subject.getSession().setAttribute("userid",username);
             req.getRequestDispatcher("/WEB-INF/jsp/loginSuccess.jsp").forward(req, resp);
         }
     }
