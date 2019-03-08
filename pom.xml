@@ -27,6 +27,9 @@
         <module>java-eg-shiro</module>
         <module>java-eg-spring</module>
         <module>java-eg-shiro-web</module>
+		<module>java-eg-zk</module>
+        <module>java-eg-zkclient</module>
+        <module>java-eg-zk-curator</module>
     </modules>
 
 	<properties>
