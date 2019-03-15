@@ -57,6 +57,7 @@ public class DataMonitor implements Watcher, StatCallback{
                     // here - watches are automatically re-registered with
                     // server and any watches triggered while the client was
                     // disconnected will be delivered (in order of course)
+                    System.out.println("zk 建立连接");
                     break;
                 case Expired:
                     // It's all over

@@ -13,6 +13,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.Arrays;
+import java.util.concurrent.CountDownLatch;
 
 import org.apache.zookeeper.KeeperException;
 import org.apache.zookeeper.WatchedEvent;
@@ -27,12 +29,15 @@ public class Executor implements Watcher, Runnable, DataMonitor.DataMonitorListe
     String filename;
     String exec[];
     Process child;
+    /** 信号量，阻塞程序执行，用于等待zookeeper连接成功，发送成功信号 */
+    CountDownLatch connectedSemaphore;
 
     public Executor(String hostPort, String znode, String filename,
                     String exec[]) throws KeeperException, IOException {
         this.filename = filename;
         this.exec = exec;
-        zk = new ZooKeeper(hostPort, 3000, this);
+//        this.connectedSemaphore = new CountDownLatch(1);
+        zk = new ZooKeeper(hostPort, 100000, this);
         dm = new DataMonitor(zk, znode, null, this);
     }
 
@@ -41,7 +46,7 @@ public class Executor implements Watcher, Runnable, DataMonitor.DataMonitorListe
      */
     public static void main(String[] args) {
         if (args.length < 4) {
-            System.err.println("USAGE: Executor hostPort znode filename program [args ...]"+args);
+            System.err.println("USAGE: Executor hostPort znode filename program [args ...]"+ Arrays.asList(args));
             System.exit(2);
         }
         String hostPort = args[0];
@@ -51,6 +56,7 @@ public class Executor implements Watcher, Runnable, DataMonitor.DataMonitorListe
         System.arraycopy(args, 3, exec, 0, exec.length);
         try {
             new Executor(hostPort, znode, filename, exec).run();
+            System.out.println("wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww");
         } catch (Exception e) {
             e.printStackTrace();
         }
