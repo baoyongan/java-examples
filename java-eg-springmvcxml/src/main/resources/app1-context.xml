@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!-- 启用MVC注解 -->
+    <mvc:annotation-driven />
+
+
+    <!-- 默认servlet 处理 -->
+    <mvc:default-servlet-handler default-servlet-name="DefaultServletHandler" />
+
+
+    <!-- 只扫描controller -->
+    <context:component-scan base-package="com.bya.web.app1" >
+        <!--<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>-->
+    </context:component-scan>
+
+    <!--拦截器定义-->
+    <mvc:interceptors>
+        <bean class="com.bya.web.common.interceptor.SelfHandlerInterceptor"/>
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <mvc:exclude-mapping path="/pathvar/**"/> <!--排除-->
+            <bean class="com.bya.web.common.interceptor.HandlerInterceptor1"/>
+        </mvc:interceptor>
+        <mvc:interceptor>
+            <mvc:mapping path="/pathvar/*"/>
+            <bean class="com.bya.web.common.interceptor.HandlerInterceptor2"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
+
+    <!-- 视图解析器 -->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/classes/views/app1/"></property>
+        <property name="suffix" value=".jsp"></property>
+    </bean>
+
+
+</beans>

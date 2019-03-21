@@ -1,0 +1,64 @@
+<configuration debug="true">
+
+	<!-- 控制台日志打印 -->
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] [%-5level] %logger{0} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+	<!-- 总日志打印 -->
+	<appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+	 	<file>${catalina.base}/logs/general.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+			<fileNamePattern>${catalina.base}/logs/general.log.%d{yyyy-MM-dd}.%i</fileNamePattern>
+			<maxFileSize>50MB</maxFileSize><!-- 单个日志文件最大50M --> 
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<Pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] [%-5level] %logger{0} - %msg%n</Pattern>
+		</layout>
+	</appender>
+	
+	<!-- 错误日志单独打印 -->
+	<appender name="ERRORFILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<filter class="ch.qos.logback.classic.filter.LevelFilter">   
+	      <level>ERROR</level>   
+	      <onMatch>ACCEPT</onMatch>   
+	      <onMismatch>DENY</onMismatch>   
+	    </filter>
+	 	<file>${catalina.base}/logs/error.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+			<fileNamePattern>${catalina.base}/logs/error.log.%d{yyyy-MM-dd}.%i</fileNamePattern>
+			<maxHistory>180</maxHistory><!-- 按月滚动最多保留6个月的 --> 
+			<maxFileSize>50MB</maxFileSize><!-- 单个日志文件最大50M --> 
+		</rollingPolicy>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<Pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] [%-5level] %logger - %msg%n</Pattern>
+		</layout>
+	</appender>
+
+	<logger name="java.sql" >
+		<level value="debug" />
+	</logger>
+	
+	<logger name="org.mybatis" >
+		<level value="debug" />
+	</logger>
+		
+	<logger name="com.ibatis" >
+		<level value="debug" />
+	</logger>
+	
+	<logger name="org" >
+		<level value="info" />
+	</logger>
+	
+	<logger name="org.springframework" >
+		<level value="trace" />
+	</logger>
+
+    <root level="debug">
+	   <appender-ref ref="STDOUT" />
+    </root>
+
+</configuration>

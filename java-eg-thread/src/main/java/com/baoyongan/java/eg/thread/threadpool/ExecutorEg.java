@@ -1,10 +1,6 @@
 package com.baoyongan.java.eg.thread.threadpool;
 
-import java.util.concurrent.Executors;
-import java.util.concurrent.LinkedBlockingQueue;
-import java.util.concurrent.SynchronousQueue;
-import java.util.concurrent.ThreadPoolExecutor;
-import java.util.concurrent.TimeUnit;
+import java.util.concurrent.*;
 
 public class ExecutorEg {
 	public static void main(String[] args) { 
@@ -28,7 +24,11 @@ public class ExecutorEg {
 		new ThreadPoolExecutor(0, Integer.MAX_VALUE, 60L, TimeUnit.SECONDS,
 				new SynchronousQueue<Runnable>());
 		
-		// 
+		//
+
+		ScheduledExecutorService schedule=Executors.newScheduledThreadPool(3);
+//		schedule.
+
 	}
 		
 }

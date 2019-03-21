@@ -23,7 +23,14 @@
 		<module>java-eg-hession-server</module>
 		<module>java-eg-springmvc</module>
 		<module>java-eg-mongo</module>
-	</modules>
+		<module>java-eg-springmvcxml</module>
+        <module>java-eg-shiro</module>
+        <module>java-eg-spring</module>
+        <module>java-eg-shiro-web</module>
+		<module>java-eg-zk</module>
+        <module>java-eg-zkclient</module>
+        <module>java-eg-zk-curator</module>
+    </modules>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -53,7 +60,7 @@
 	</dependencyManagement>
 	-->
 
-	<build>
+	<!--<build>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -72,7 +79,7 @@
 				</configuration>
 			</plugin>
 		</plugins>
-	</build>
+	</build>-->
 
 	<!-- 配置仓库地址 -->
 	<!-- <repositories> -->
