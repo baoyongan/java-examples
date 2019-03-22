@@ -10,16 +10,20 @@ import org.springframework.util.StringUtils;
 
 import java.io.*;
 import java.net.URL;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class ResourceTest extends BaseTest {
 
     private static final String BASE_URL = "http://static.zhongchebaolian.com/photobase";
 
+    ExecutorService  executorService=Executors.newFixedThreadPool(2);
+
     @Test
     public void urlResourceTest() throws IOException {
         BufferedReader reader=null;
         try {
-           reader= IOUtils.toBufferedReader(new FileReader(new File("D:/b1.txt")));
+           reader= IOUtils.toBufferedReader(new FileReader(new File("D:/217-317-1.txt")));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
@@ -31,15 +35,23 @@ public class ResourceTest extends BaseTest {
 
         String line= null;
         while (!StringUtils.isEmpty(line=reader.readLine())){
-            String url=BASE_URL+line.trim();
+            final String url=BASE_URL+line.trim();
             System.out.println(url);
-            String fileName=getFileName(url);
+            final String fileName=getFileName(url);
             if(StringUtils.isEmpty(fileName)){
                 System.out.println("filename parse error");
                 return;
             }
-            copyUrlResourceToFile("D:/zcbl/b1/",url,fileName);
+            executorService.execute(new Runnable() {
+                @Override
+                public void run() {
+                    copyUrlResourceToFile("D:\\zcbl\\export1\\0322",url,fileName);
+                    System.out.println(url);
+                }
+            });
+
         }
+
         reader.close();
     }
 
