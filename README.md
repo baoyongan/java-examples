@@ -1,3 +1,4 @@
 # java-examples
 java program eg 
- 测试交流O zheshi shenm gui 
+ 测试交流 zheshi shenm gui 
+wei l dis
