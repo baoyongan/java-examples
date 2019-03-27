@@ -10,15 +10,15 @@ public class Rupt001 {
         Work2 w2=r.new Work2();
         Work3 w3=r.new Work3();
 
-        w1.start();
+//        w1.start();
         w2.start();
-        w3.start();
-        Thread.sleep(100);
-        w1.interrupt();
+//        w3.start();
+//        Thread.sleep(100);
+//        w1.interrupt();
         Thread.sleep(100);
         w2.interrupt();
-        Thread.sleep(100);
-        w3.interrupt();
+//        Thread.sleep(100);
+//        w3.interrupt();
 
     }
 
@@ -70,7 +70,7 @@ public class Rupt001 {
         }
 
         private boolean canGo() throws InterruptedException {
-            if (Thread.currentThread().isInterrupted()){ // 会清除 中断状态，并且返回之前的状态
+            if (Thread.currentThread().isInterrupted()){ // 不会清除 中断状态，并且返回之前的状态
                 throw new InterruptedException("some operation interrupt");
             }
             return true;
