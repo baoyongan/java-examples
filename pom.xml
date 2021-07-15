@@ -30,6 +30,7 @@
 		<module>java-eg-zk</module>
         <module>java-eg-zkclient</module>
         <module>java-eg-zk-curator</module>
+        <module>java-eg-redisson</module>
     </modules>
 
 	<properties>

@@ -81,20 +81,20 @@ public abstract class RSACoder extends Coder {
      *  
      */  
     public static boolean verify(byte[] data, String publicKey, String sign)  
-            throws Exception {  
-  
+            throws Exception {
+
         // 解密由base64编码的公钥  
-        byte[] keyBytes = decryptBASE64(publicKey);  
-  
+        byte[] keyBytes = decryptBASE64(publicKey);
+
         // 构造X509EncodedKeySpec对象  
-        X509EncodedKeySpec keySpec = new X509EncodedKeySpec(keyBytes);  
-  
+        X509EncodedKeySpec keySpec = new X509EncodedKeySpec(keyBytes);
+
         // KEY_ALGORITHM 指定的加密算法  
-        KeyFactory keyFactory = KeyFactory.getInstance(KEY_ALGORITHM);  
-  
+        KeyFactory keyFactory = KeyFactory.getInstance(KEY_ALGORITHM);
+
         // 取公钥匙对象  
-        PublicKey pubKey = keyFactory.generatePublic(keySpec);  
-  
+        PublicKey pubKey = keyFactory.generatePublic(keySpec);
+
         Signature signature = Signature.getInstance(SIGNATURE_ALGORITHM);  
         signature.initVerify(pubKey);  
         signature.update(data);  
@@ -113,7 +113,8 @@ public abstract class RSACoder extends Coder {
      * @throws Exception 
      */  
     public static byte[] decryptByPrivateKey(byte[] data, String key)  
-            throws Exception {  
+            throws Exception {
+
         // 对密钥解密  
         byte[] keyBytes = decryptBASE64(key);  
   
@@ -165,10 +166,12 @@ public abstract class RSACoder extends Coder {
      * @throws Exception 
      */  
     public static byte[] encryptByPublicKey(byte[] data, String key)  
-            throws Exception {  
+            throws Exception {
+
+        long start=System.currentTimeMillis();
         // 对公钥解密  
         byte[] keyBytes = decryptBASE64(key);  
-  
+
         // 取得公钥  
         X509EncodedKeySpec x509KeySpec = new X509EncodedKeySpec(keyBytes);  
         KeyFactory keyFactory = KeyFactory.getInstance(KEY_ALGORITHM);  
@@ -176,9 +179,11 @@ public abstract class RSACoder extends Coder {
   
         // 对数据加密  
         Cipher cipher = Cipher.getInstance(keyFactory.getAlgorithm());  
-        cipher.init(Cipher.ENCRYPT_MODE, publicKey);  
-  
-        return cipher.doFinal(data);  
+        cipher.init(Cipher.ENCRYPT_MODE, publicKey);
+        byte[] result = cipher.doFinal(data);
+        long end =System.currentTimeMillis();
+        System.out.println("加密花费了："+(end-start));
+        return result;
     }  
   
     /** 
@@ -241,7 +246,8 @@ public abstract class RSACoder extends Coder {
      * @return 
      * @throws Exception 
      */  
-    public static Map<String, Object> initKey() throws Exception {  
+    public static Map<String, Object> initKey() throws Exception {
+        long start=System.currentTimeMillis();
         KeyPairGenerator keyPairGen = KeyPairGenerator  
                 .getInstance(KEY_ALGORITHM);  
         keyPairGen.initialize(1024);  
@@ -252,12 +258,16 @@ public abstract class RSACoder extends Coder {
         RSAPublicKey publicKey = (RSAPublicKey) keyPair.getPublic();  
   
         // 私钥  
-        RSAPrivateKey privateKey = (RSAPrivateKey) keyPair.getPrivate();  
-  
+        RSAPrivateKey privateKey = (RSAPrivateKey) keyPair.getPrivate();
+
+        long end=System.currentTimeMillis();
+        long time=end-start;
+        System.out.println("生成公私钥花费了："+time);
         Map<String, Object> keyMap = new HashMap<String, Object>(2);  
   
         keyMap.put(PUBLIC_KEY, publicKey);  
-        keyMap.put(PRIVATE_KEY, privateKey);  
+        keyMap.put(PRIVATE_KEY, privateKey);
+
         return keyMap;  
-    }  
+    }
 }  

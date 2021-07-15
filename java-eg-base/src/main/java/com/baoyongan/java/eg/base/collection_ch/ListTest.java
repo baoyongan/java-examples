@@ -1,18 +1,19 @@
 package com.baoyongan.java.eg.base.collection_ch;
 
+import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-public class Genera {
+public class ListTest {
+
     public static void main(String[] args) {
+        List<Integer> intList=new ArrayList<>();
 
-        Map m=new HashMap();
-        m.put("k","v");
-        System.out.println(m);
+        Map<String,String> a=new HashMap();
 
-        List<String> ss=new LinkedList<>();
+        a.put("22","11");
+
 
     }
 }

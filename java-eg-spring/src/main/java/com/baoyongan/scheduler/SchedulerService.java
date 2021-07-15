@@ -23,8 +23,19 @@ public class SchedulerService {
         System.out.println("dofixedRateAndDelaySomething...");
     }
 
+//    @Scheduled(cron="*/3 * * * * *")  // cron表达式
+//    public void doSomething() {
+//        System.out.println(" cron表达式...");
+//    }
+
+
     @Scheduled(cron="*/3 * * * * *")  // cron表达式
-    public void doSomething() {
-        System.out.println(" cron表达式...");
+    public void doSome() {
+        innerSch("current time");
+    }
+
+    public String innerSch(String time){
+        System.out.println(" q 表达式...");
+        return null;
     }
 }

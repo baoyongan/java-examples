@@ -18,5 +18,34 @@ public class PrimitiveDataType {
         double d=32323.32_323_23d;
         System.out.println(d);
 
+        Boolean sss=null;
+        Boolean ddd=false;
+        if(ddd==sss){
+            System.out.println("ddd==sss");
+        }
+        System.out.println(sss);
+
+        TestBool st=new TestBool();
+        System.out.println(st);
+
+    }
+
+    static class TestBool{
+        private Boolean fff;
+
+        public Boolean getFff() {
+            return fff;
+        }
+
+        public void setFff(Boolean fff) {
+            this.fff = fff;
+        }
+
+        @Override
+        public String toString() {
+            return "TestBool{" +
+                    "fff=" + fff +
+                    '}';
+        }
     }
 }
