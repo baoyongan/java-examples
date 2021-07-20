@@ -1,4 +1,4 @@
-package com.baoyongan.java.eg.thread.lock;
+package com.baoyongan.java.eg.thread.concurrent.locks_ch;
 
 import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
