@@ -1,4 +1,4 @@
-package com.baoyongan.java.eg.thread.collection.deque;
+package com.baoyongan.java.eg.thread.concurrent.queue;
 
 import java.util.Random;
 import java.util.concurrent.LinkedBlockingDeque;

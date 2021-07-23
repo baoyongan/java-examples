@@ -1,4 +1,4 @@
-package com.baoyongan.java.eg.thread.threadpool;
+package com.baoyongan.java.eg.thread.concurrent.executor.threadpool;
 
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;

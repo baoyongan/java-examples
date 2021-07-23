@@ -1,4 +1,4 @@
-package com.baoyongan.java.eg.thread;
+package com.baoyongan.java.eg.thread.concurrent;
 import java.util.concurrent.Semaphore;
 
 /**
