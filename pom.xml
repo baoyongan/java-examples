@@ -31,7 +31,8 @@
         <module>java-eg-zkclient</module>
         <module>java-eg-zk-curator</module>
         <module>java-eg-redisson</module>
-    </modules>
+		<module>java-tools</module>
+	</modules>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
