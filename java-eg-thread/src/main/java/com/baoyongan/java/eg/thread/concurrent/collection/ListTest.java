@@ -1,4 +1,4 @@
-package com.baoyongan.java.eg.thread.collection;
+package com.baoyongan.java.eg.thread.concurrent.collection;
 
 import java.util.concurrent.CopyOnWriteArrayList;
 

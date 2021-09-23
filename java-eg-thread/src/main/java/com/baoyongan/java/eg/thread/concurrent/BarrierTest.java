@@ -81,7 +81,11 @@ public class BarrierTest {
     }
 
     public static void main(String[] args) {
-        new BarrierTest(new double[5][7]);
+        /**
+         * 下面完成对一个二位数组数据的每一列 进行合计，并将最后合计结果放在最后一行。
+         */
+        new BarrierTest(new double[5][7]
+        );
     }
 
 

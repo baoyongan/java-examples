@@ -1,4 +1,4 @@
-package com.baoyongan.java.eg.thread.collection;
+package com.baoyongan.java.eg.thread.concurrent.queue;
 
 public class BlockingQueueTest {
     public static void main(String[] args) {

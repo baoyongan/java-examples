@@ -42,5 +42,43 @@ public class SemaphoreTest<T> {
 
     public static void main(String[] args) {
 
+        Semaphore a=new Semaphore(1);
+        a.release();
+        a.release();
+        a.tryAcquire();
+        a.tryAcquire();
+        /*new Thread(()->{
+            if(a.tryAcquire()){
+                try{
+                    System.out.println("running A");
+                    try {
+                        Thread.sleep(3000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    System.out.println("running A over");
+                }finally {
+                    a.release();
+                }
+            }
+        }).start();
+
+        new Thread(()->{
+            if(a.tryAcquire()){
+                try{
+                    System.out.println("running B");
+                    try {
+                        Thread.sleep(3000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    System.out.println("running B over");
+                }finally {
+                    a.release();
+                }
+            }
+        }).start();*/
+
+
     }
 }

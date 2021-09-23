@@ -101,7 +101,7 @@ public class ForkBlur extends RecursiveAction {
 
     // Plumbing follows.
     public static void main(String[] args) throws Exception {
-        String srcName = "C:\\Users\\bqct_bya\\Desktop\\1.jpg";
+        String srcName = "C:\\Users\\baoyo\\Desktop\\2.jpg";
         File srcFile = new File(srcName);
         BufferedImage image = ImageIO.read(srcFile);
 
@@ -109,7 +109,7 @@ public class ForkBlur extends RecursiveAction {
 
         BufferedImage blurredImage = blur(image);
 
-        String dstName = "C:\\Users\\bqct_bya\\Desktop\\2.jpg";
+        String dstName = "C:\\Users\\baoyo\\Desktop\\2222.jpg";
         File dstFile = new File(dstName);
         ImageIO.write(blurredImage, "jpg", dstFile);
 

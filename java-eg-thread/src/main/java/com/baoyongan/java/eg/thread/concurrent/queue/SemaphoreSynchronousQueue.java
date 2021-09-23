@@ -1,4 +1,4 @@
-package com.baoyongan.java.eg.thread.queue;
+package com.baoyongan.java.eg.thread.concurrent.queue;
 
 import java.util.concurrent.Semaphore;
 

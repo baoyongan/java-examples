@@ -1,4 +1,4 @@
-package com.baoyongan.java.eg.thread.concurrent;
+package com.baoyongan.java.eg.thread.concurrent.executor;
 
 import java.util.Random;
 import java.util.concurrent.Callable;

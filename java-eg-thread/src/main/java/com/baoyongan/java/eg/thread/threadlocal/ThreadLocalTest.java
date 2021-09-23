@@ -1,4 +1,4 @@
-package com.baoyongan.java.eg.thread.threadlocaleg;
+package com.baoyongan.java.eg.thread.threadlocal;
 
 public class ThreadLocalTest {
 
