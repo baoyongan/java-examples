@@ -1,4 +1,4 @@
-package com.baoyongan.java.tools;
+package com.baoyongan.java.tools.html;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;

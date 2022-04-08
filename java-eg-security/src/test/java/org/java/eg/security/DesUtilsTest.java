@@ -13,6 +13,6 @@ public class DesUtilsTest{
 
 	@Test
 	public void decrypt() {
-		System.out.println(DesUtils.decrypt("S3TQAKrIB64="));
+		System.out.println(DesUtils.decrypt("cetTbY8PLTs="));
 	}
 }

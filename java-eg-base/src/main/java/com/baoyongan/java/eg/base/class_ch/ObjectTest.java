@@ -1,5 +1,7 @@
 package com.baoyongan.java.eg.base.class_ch;
 
+import java.util.Objects;
+
 /**
  * Created by bqct_bya on 2017/10/18.
  */
@@ -7,7 +9,20 @@ public class ObjectTest implements Cloneable{
     private String str;
     private Bicycle bicycle;
 
-    public ObjectTest(String str,Bicycle bicycle) {
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ObjectTest that = (ObjectTest) o;
+        return Objects.equals(str, that.str) && Objects.equals(bicycle, that.bicycle);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(str, bicycle);
+    }
+
+    public ObjectTest(String str, Bicycle bicycle) {
         this.str = str;
         this.bicycle=bicycle;
     }
@@ -28,7 +43,11 @@ public class ObjectTest implements Cloneable{
         System.out.println("str()==ts1>"+ts1.str);
         System.out.println("bicycle()==ts>"+ts.bicycle);
         System.out.println("bicycle()==ts1>"+ts1.bicycle);
-
-
+        System.out.println("==================================================");
+        System.out.println(ts.toString());
+        System.out.println(System.identityHashCode(ts));
+        // System.identityHashCode 不论是否重写都是返回 Object 默认的实现。
+        System.out.println(Integer.toHexString(System.identityHashCode(ts)));
+        System.out.println(Integer.toHexString(Objects.hash(ts)));
     }
 }

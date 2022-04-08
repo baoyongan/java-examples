@@ -1,9 +1,6 @@
 package com.baoyongan.java.eg.base.collection_ch;
 
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Genera {
     public static void main(String[] args) {
@@ -13,6 +10,8 @@ public class Genera {
         System.out.println(m);
 
         List<String> ss=new LinkedList<>();
+        Collections.unmodifiableList(ss);
+
 
     }
 }

@@ -3,15 +3,28 @@ package com.baoyongan.java.eg.base.operator_ch;
 public class yiWei {
 
     public static void main(String[] args) {
-        int number = 10;
+        int number = 11;
         //原始数二进制
         printInfo(number);
-        number = number << 1;
-        //左移一位
-        printInfo(number);
-        number = number >> 1;
         //右移一位
+        number = number >> 1;
         printInfo(number);
+        //左移一位
+        number = number << 1;
+        printInfo(number);
+
+
+        testOther();
+    }
+
+    private static void testOther() {
+        System.out.println("=============================");
+        int h=162132412;
+        printInfo(h);
+        int t=h >>> 16;
+        printInfo(t);
+        int d = h ^ t;
+        printInfo(d);
     }
 
     /**

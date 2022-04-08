@@ -32,7 +32,9 @@
         <module>java-eg-zk-curator</module>
         <module>java-eg-redisson</module>
 		<module>java-tools</module>
-	</modules>
+        <module>java-eg-js</module>
+        <module>java-eg-redis</module>
+    </modules>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

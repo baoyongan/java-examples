@@ -18,6 +18,11 @@ public class Operator {
         }
 
         System.out.println("end i="+i);
+
+        int a1=10;
+        int b1=1;
+        int c=a1^b1;
+        System.out.println("二进制结果："+Integer.toBinaryString(c));
     }
 
 }

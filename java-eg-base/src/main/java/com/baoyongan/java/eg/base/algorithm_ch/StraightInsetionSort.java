@@ -16,13 +16,13 @@ public class StraightInsetionSort {
     }
 
     private static int[] sort1(int[] in, boolean b) {
-        for (int i = 1; i <in.length ; i++) {
+        int i,j;
+        for (i = 1; i <in.length ; i++) {
             if(b){
                 // 递增排序
                 if(in[i]<in[i-1]){ // i 为分界线  i坐标前面的是已经排好序的，后面的是为排序的
                     //  不满足进行排序
                     int temp=in[i];
-                    int j;
                     for (j = i-1; j>=0&&in[j] >temp ; j--) {
                         in[j+1]=in[j]; // 后移
                     }
@@ -32,7 +32,6 @@ public class StraightInsetionSort {
                 // 递减
                 if(in[i]>in[i-1]){
                     int temp=in[i];
-                    int j;
                     for (j = i-1; j >=0&&in[j]<temp ; j--) {
                         in[j+1]=in[j];
                     }
