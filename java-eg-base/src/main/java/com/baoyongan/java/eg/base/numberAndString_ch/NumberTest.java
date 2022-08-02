@@ -16,6 +16,11 @@ public class NumberTest {
         int max=Integer.MAX_VALUE;
         int sm=max+1;
         System.out.println("测试溢出情况"+sm);
+        // 典型的测试
+        int lowest=-2147483648;
+        int low=Integer.MIN_VALUE;
+        int abs = Math.abs(lowest);
+        System.out.printf("int 的最小值：%d, %d,使用math.abs 取绝对值返回：%d,溢出情况",lowest,low,abs);
 
 
         BigInteger bigInteger=new BigInteger("1212132132132212");
