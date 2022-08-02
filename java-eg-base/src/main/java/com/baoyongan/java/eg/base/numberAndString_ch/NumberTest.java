@@ -20,8 +20,13 @@ public class NumberTest {
         int lowest=-2147483648;
         int low=Integer.MIN_VALUE;
         int abs = Math.abs(lowest);
-        System.out.printf("int 的最小值：%d, %d,使用math.abs 取绝对值返回：%d,溢出情况",lowest,low,abs);
-
+        System.out.printf("int 的最小值：%d, %d,使用math.abs 取绝对值返回：%d,溢出情况 \n",lowest,low,abs);
+        // 负数的取余数运算注意项
+        // (a/b)*b+a%b=a
+        System.out.printf("-14/3= %d \n",-14/3);
+        System.out.printf("14/-3= %d \n",14/-3);
+        System.out.printf("-14%%3= %d \n",-14%3);
+        System.out.printf("14%%-3= %d \n",14%-3);
 
         BigInteger bigInteger=new BigInteger("1212132132132212");
 
