@@ -12,6 +12,11 @@ public class NumberTest {
         Short i=new Short((short) -1);
         System.out.println(Short.toUnsignedInt(i));
 
+        // int 值溢出，不会报错，因为符号位变成1，所以变成了负值
+        int max=Integer.MAX_VALUE;
+        int sm=max+1;
+        System.out.println("测试溢出情况"+sm);
+
 
         BigInteger bigInteger=new BigInteger("1212132132132212");
 
