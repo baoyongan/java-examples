@@ -34,6 +34,7 @@
 		<module>java-tools</module>
         <module>java-eg-js</module>
         <module>java-eg-redis</module>
+        <module>java-eg-kafka</module>
     </modules>
 
 	<properties>
