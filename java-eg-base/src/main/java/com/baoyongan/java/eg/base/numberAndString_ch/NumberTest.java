@@ -63,5 +63,10 @@ public class NumberTest {
         System.out.println(b);
         String s1 = 1 + 2 + "3";
         System.out.println(s1);
+
+
+        System.out.println("0%2="+0%2);
+        System.out.println("1%2="+1%2);
+        System.out.println("2%2="+2%2);
     }
 }
