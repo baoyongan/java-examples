@@ -12,8 +12,8 @@ import java.util.Locale;
 import java.util.Properties;
 
 /**
- *
-  */
+ * 消费主题 my_topic_b , 主题分区中主要包含 事务消息
+ */
 public class ConsumerTopicB {
     public static final String TOPIC_NAME = "my_topic_b";
 
@@ -25,12 +25,12 @@ public class ConsumerTopicB {
         props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
         props.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, false); // 手动提交offset
         props.put(ConsumerConfig.GROUP_ID_CONFIG, "mygroup_b");
-        props.put(ConsumerConfig.ISOLATION_LEVEL_CONFIG, "read_committed" );
+//        props.put(ConsumerConfig.ISOLATION_LEVEL_CONFIG, "read_committed" );
 
 
         Thread t0 = new Thread(() -> {
             KafkaConsumer consumer = new KafkaConsumer(props);
-            // 指定订阅主题，不指定分区
+            // 指定订阅主题，并指定 offset 位置。
             consumer.subscribe(Arrays.asList(TOPIC_NAME), new ConsumerRebalanceListener() {
                 @Override
                 public void onPartitionsRevoked(Collection<TopicPartition> partitions) {
@@ -41,14 +41,20 @@ public class ConsumerTopicB {
                 public void onPartitionsAssigned(Collection<TopicPartition> partitions) {
                     for (TopicPartition p : partitions) {
 //                        consumer.committed()
+                        long offset=getlocalOffset(p);
+                        System.out.println(", Seeking to " + offset);
+                        consumer.seek(p, offset);
                     }
+                }
+
+                private long getlocalOffset(TopicPartition p) {
+                    System.out.printf("分区：%s, %d",p.topic(),p.partition());
+                    return 1053;
                 }
             });
             // 指定订阅主题和分区
 //            consumer.assign(Stream.of(new TopicPartition(TOPIC_NAME, 0)).collect(Collectors.toList()));
             // 从指定的 offset 位置开始消费
-            consumer.seek(new TopicPartition(TOPIC_NAME,0),1000);
-            consumer.seek(new TopicPartition(TOPIC_NAME,1),1000);
 
             String name = Thread.currentThread().getName();
             boolean go = true;

@@ -20,6 +20,7 @@ import java.util.logging.Logger;
  * Topic B: 2分区，3副本
  * ./bin/kafka-topics.sh --bootstrap-server localhost:9092 --create --topic my_topic_b --partitions 2 --replication-factor 3
  * demo 生产者定义分区策略，将消息发送到指定分区
+ * 测试使用事务消息发送
  */
 public class ProducerTopicB<K,V> {
 
@@ -73,6 +74,7 @@ public class ProducerTopicB<K,V> {
         Producer<String, String> producer = producerTopicB.getProducer();
 
         producer.initTransactions();
+        System.out.println("成功初始化消息。");
         CountDownLatch countDownLatch=new CountDownLatch(1);
 
         // 启动一个线程控制何时执行 提交
@@ -87,7 +89,7 @@ public class ProducerTopicB<K,V> {
 
         try {
             producer.beginTransaction();
-            for (int i = 0; i < 1000; i++) {
+            for (int i = 1100; i < 1200; i++) {
                 producerTopicB.sendMsg("b" + i, "b" + i);
             }
             System.out.println("全部发送，等待提交");
