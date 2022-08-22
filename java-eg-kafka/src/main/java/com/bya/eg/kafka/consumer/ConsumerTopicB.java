@@ -25,7 +25,7 @@ public class ConsumerTopicB {
         props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
         props.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, false); // 手动提交offset
         props.put(ConsumerConfig.GROUP_ID_CONFIG, "mygroup_b");
-//        props.put(ConsumerConfig.ISOLATION_LEVEL_CONFIG, "read_committed" );
+        props.put(ConsumerConfig.ISOLATION_LEVEL_CONFIG, "read_committed" );
 
 
         Thread t0 = new Thread(() -> {
