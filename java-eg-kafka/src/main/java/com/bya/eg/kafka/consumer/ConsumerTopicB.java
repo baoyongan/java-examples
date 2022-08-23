@@ -13,6 +13,7 @@ import java.util.Properties;
 
 /**
  * 消费主题 my_topic_b , 主题分区中主要包含 事务消息
+ * 在读取事务消息时候，如果设置 隔离级别 为读已提交，那么只有提交的事务消息才能被被读取，如果是默认读未提交，那么即使生产者没有进行commit,消息也可以被读取。
  */
 public class ConsumerTopicB {
     public static final String TOPIC_NAME = "my_topic_b";
