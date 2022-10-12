@@ -35,6 +35,7 @@
         <module>java-eg-js</module>
         <module>java-eg-redis</module>
         <module>java-eg-kafka</module>
+        <module>java-eg-reactive</module>
     </modules>
 
 	<properties>

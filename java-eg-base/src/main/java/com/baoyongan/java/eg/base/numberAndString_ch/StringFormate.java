@@ -14,6 +14,11 @@ public class StringFormate {
             String endChar = uuid.substring(uuid.length() - 1);
             int i10value = Integer.parseInt(endChar, 16);
             System.out.println(endChar + "======" + i10value +"====="+String.format("%02d", i10value));
+
+
+
         }
+//        String s = Long.toString(9999999999L, 16);
+        System.out.println(String.format("%1$010x",9999999999L));
     }
 }

@@ -11,18 +11,23 @@ import java.util.Iterator;
 import java.util.Set;
 
 public class Reactor implements Runnable {
+    public static void main(String[] args) throws IOException {
+
+        Reactor reactor=new Reactor(9085);
+        // 启动 selector 检测
+        reactor.run();
+
+    }
+
     final Selector selector;
-    final ServerSocketChannel serverSocket;
+    final ServerSocketChannel serverSocketChannel;
 
     public Reactor(int port) throws IOException {
         selector = Selector.open();
-        serverSocket = ServerSocketChannel.open();
-        serverSocket.socket().bind(
-                new InetSocketAddress(port));
-        serverSocket.configureBlocking(false);
-        SelectionKey sk =
-                serverSocket.register(selector,
-                        SelectionKey.OP_ACCEPT);
+        serverSocketChannel = ServerSocketChannel.open();
+        serverSocketChannel.socket().bind(new InetSocketAddress(port));
+        serverSocketChannel.configureBlocking(false);
+        SelectionKey sk = serverSocketChannel.register(selector, SelectionKey.OP_ACCEPT);
         sk.attach(new Acceptor());
     }
     /*
@@ -54,7 +59,7 @@ public class Reactor implements Runnable {
     class Acceptor implements Runnable { // inner
         public void run() {
             try {
-                SocketChannel c = serverSocket.accept();
+                SocketChannel c = serverSocketChannel.accept();
                 if (c != null)
                     new Handler(selector, c);
             } catch (IOException ex) { /* ... */ }

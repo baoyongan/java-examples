@@ -9,9 +9,9 @@ import java.nio.channels.SocketChannel;
 import java.nio.charset.StandardCharsets;
 import java.util.Iterator;
 
-public class SocketNioClient {
+public class SocketNioClient extends NioServer  {
     public static void main(String[] args) throws IOException {
-
+        SocketNioClient nioClient=new SocketNioClient();
         SocketChannel channel=SocketChannel.open();
         channel.configureBlocking(false);
         Selector selector= Selector.open();
@@ -35,20 +35,28 @@ public class SocketNioClient {
                     }
                     channel.configureBlocking(false);
                     channel.register(selector,SelectionKey.OP_READ);
-                    // TODO 发送消息
-                    ByteBuffer temp= ByteBuffer.allocate(1024);
                     String info = "i am bya";
-                    temp.put(info.getBytes(StandardCharsets.UTF_8));
-                    temp.flip();
-                    while (temp.hasRemaining()){
-                        channel.write(temp);
-                        System.out.println("写入了");
-                    }
-                    System.out.println("连接over.");
+                    nioClient.writeDatatoChannel(info.getBytes(StandardCharsets.UTF_8),channel);
+                    System.out.printf("send message to server. server: %s message: %s \n", c1.getRemoteAddress(), info);
                 }else if(key.isReadable()){
                     System.out.println("读就绪");
-                    // 处理读取操作
-                }else {
+                    // 读事件已经就绪
+                    SocketChannel cr = (SocketChannel) key.channel();
+                    cr.configureBlocking(false);
+                    System.out.println(cr.getRemoteAddress());
+                    String data = new String(nioClient.readFromSocketChannelToString(cr),StandardCharsets.UTF_8);
+                    System.out.printf("receive message from client. client: %s message: %s \n", cr.getRemoteAddress(), data);
+                } else if (key.isWritable()) {
+                    System.out.println("写入就绪");
+                    SocketChannel cr = (SocketChannel) key.channel();
+                    // 处理业务，响应结果
+                    String attachment = (String) key.attachment();
+                    if(null!=attachment){
+                        nioClient.writeDatatoChannel(attachment.getBytes(StandardCharsets.UTF_8),cr);
+                        System.out.printf("send message to server. server: %s message: %s \n", cr.getRemoteAddress(), attachment);
+                        key.interestOps(key.interestOps() - SelectionKey.OP_WRITE);
+                    }
+                } else {
                   new UnsupportedOperationException("不支持的操作: "+key);
                 }
             }

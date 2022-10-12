@@ -10,7 +10,22 @@ public class ChannelLearn {
 
     public static void main(String[] args) throws IOException {
 
-        fileChannelTest("C:/tmp/1.txt");
+//        fileChannelTest("C:/tmp/1.txt");
+        channelTransfer("C:/tmp/1.txt","C:/tmp/11.txt");
+    }
+
+    private static void channelTransfer(String src, String des) throws IOException {
+        RandomAccessFile srcFile = new RandomAccessFile(src, "rw");
+        FileChannel fromChannel = srcFile.getChannel();
+        long position=0;
+        long count=fromChannel.size();
+
+        RandomAccessFile desFile=new RandomAccessFile(des,"rw");
+        FileChannel toChannel = desFile.getChannel();
+        toChannel.transferFrom(fromChannel,position,count);
+//        fromChannel.transferTo(position,count,toChannel);
+        desFile.close();
+        srcFile.close();
     }
 
     private static void fileChannelTest(String filePath) throws IOException {
