@@ -11,5 +11,9 @@ public class ToStringDemo {
                 "before decimal point.");
         System.out.println( (s.length() - dot - 1) +
                 " digits after decimal point.");
+
+        String ss=",sssss";
+        System.out.println(ss.substring(0));
+        System.out.println(ss.substring(1));
     }
 }
