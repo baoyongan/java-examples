@@ -21,7 +21,7 @@
         <!-- slf4J版本号 -->
         <slf4j.version>1.7.25</slf4j.version>
         <!-- spring版本号 -->
-        <spring.version>4.3.9.RELEASE</spring.version>
+        <spring.version>5.2.20.RELEASE</spring.version>
 
     </properties>
 
