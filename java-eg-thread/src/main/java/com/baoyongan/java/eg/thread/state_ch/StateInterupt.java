@@ -44,7 +44,7 @@ public class StateInterupt {
 
     public static void main(String[] args) {
         StateInterupt st=new StateInterupt();
-        System.out.println("启动 t1");
+        System.out.println("创建 t1");
 
         st.t1();
         System.out.println("触发t1中断");
