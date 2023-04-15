@@ -13,6 +13,7 @@ import org.apache.zookeeper.data.Stat;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 
 public class CuratorBase {
 	
@@ -34,7 +35,7 @@ public class CuratorBase {
 					.build();
 		//3 开启连接
 		cf.start();
-
+		cf.blockUntilConnected(5000, TimeUnit.MILLISECONDS); // 阻塞直到连接成功。
 		System.out.println(ZooKeeper.States.CONNECTED);
 		System.out.println(cf.getState());
 		// 新加、删除

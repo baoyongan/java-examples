@@ -1,5 +1,6 @@
 package com.baoyongan.java.eg.thread.concurrent.queue;
 
+import java.util.concurrent.ConcurrentLinkedDeque;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
 /**
@@ -19,5 +20,7 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 public class QueueTest {
     public static void main(String[] args) {
         ConcurrentLinkedQueue e=new ConcurrentLinkedQueue();
+        ConcurrentLinkedDeque q= new ConcurrentLinkedDeque();
+//        test
     }
 }

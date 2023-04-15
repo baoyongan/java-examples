@@ -49,6 +49,7 @@ public class ConsumerTopicB {
                 }
 
                 private long getlocalOffset(TopicPartition p) {
+                    // 本地保存的消费位置。
                     System.out.printf("分区：%s, %d",p.topic(),p.partition());
                     return 1053;
                 }

@@ -14,7 +14,8 @@ import java.util.concurrent.CountDownLatch;
 public class Lock2 {
 
 	/** zookeeper地址 */
-	static final String CONNECT_ADDR = "192.16.30.46:2181,192.16.30.52:2181,192.16.30.54:2181";
+//	static final String CONNECT_ADDR = "192.16.30.46:2181,192.16.30.52:2181,192.16.30.54:2181";
+	static final String CONNECT_ADDR = "vm1.feelfly.com:2181";
 	/** session超时时间 */
 	static final int SESSION_OUTTIME = 5000;//ms 
 	

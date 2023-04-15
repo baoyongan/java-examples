@@ -7,7 +7,7 @@ import java.util.List;
 public class HeapOOM {
 
     static class OOMObject{
-
+        Object
     }
 
     /**

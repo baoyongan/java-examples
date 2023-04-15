@@ -49,8 +49,9 @@ public class CountDownLatchTest {
             t.start();
         }
         long start=System.nanoTime();
-        startGate.countDown();
-        endGate.await();
+        // 所有线程都阻塞在   startGate.await()
+        startGate.countDown();  // 所有线程放行
+        endGate.await(); // 阻塞本线程，等待所有线程结束
         long end=System.nanoTime();
         return end-start;
     }

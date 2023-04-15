@@ -18,6 +18,8 @@ class FillAndEmpty {
     int length=4;
     char[] codes={'A','B','C','D','E','a','b','c','d','e'};
 
+
+
     class FillingLoop implements Runnable {
         Random random=new Random();
         public void run() {
