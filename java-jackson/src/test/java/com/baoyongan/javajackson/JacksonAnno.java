@@ -3,19 +3,21 @@ package com.baoyongan.javajackson;
 import com.baoyongan.javajackson.bean.*;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.InjectableValues;
-import com.fasterxml.jackson.databind.MapperFeature;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.*;
 import com.fasterxml.jackson.databind.ser.FilterProvider;
 import com.fasterxml.jackson.databind.ser.impl.SimpleBeanPropertyFilter;
 import com.fasterxml.jackson.databind.ser.impl.SimpleFilterProvider;
+import com.fasterxml.jackson.databind.type.SimpleType;
+import com.fasterxml.jackson.databind.type.TypeFactory;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.TimeZone;
 
 import static org.hamcrest.CoreMatchers.not;
@@ -26,6 +28,66 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class JacksonAnno extends JavaJacksonApplicationTests {
 
+
+    @Test
+    public void toStringTest() throws JsonProcessingException {
+        Bar<Foo> a = new Bar<>();
+        a.setCode("1");
+        a.setMsg("测速");
+
+        List<Foo> fs = new ArrayList<>();
+        fs.add(new Foo("笑啊", 1L));
+        fs.add(new Foo("小笑", 2L));
+        fs.add(new Foo("小发", 3L));
+
+        a.setData(fs);
+        String result = new ObjectMapper().writeValueAsString(a);
+        System.out.println(result);
+
+        // {"code":"1","msg":"测速","data":[{"name":"笑啊","id":1},{"name":"小笑","id":2},{"name":"小发","id":3}]}
+
+        String add = "{\"code\":\"1\",\"msg\":\"测速\",\"data\":[{\"name\":\"笑啊\",\"id\":1},{\"name\":\"小笑\",\"id\":2},{\"name\":\"小发\",\"id\":3}]}";
+        /*Bar<Foo> b = new ObjectMapper()
+                .readerFor(new TypeReference<Bar<Foo>>() {})
+                .readValue(add);
+
+        */
+
+        Bar<Foo> b = deserialization2(add, Foo.class);
+        System.out.println(b);
+    }
+
+    private <T> Bar<T> deserialization(String add, Class t) throws JsonProcessingException {
+        return new ObjectMapper()
+                .readerFor(new TypeReference<Bar<T>>() {
+                })
+                .readValue(add);
+    }
+
+    private <T> Bar<T> deserialization1(String add, Class t) throws JsonProcessingException {
+
+        ObjectMapper mapper = new ObjectMapper();
+        return mapper.readerFor(mapper.getTypeFactory().constructParametricType(Bar.class, List.class, t))
+                .readValue(add);
+    }
+
+    private <T> Bar<T> deserialization2(String add, Class t) throws JsonProcessingException {
+
+        ObjectMapper mapper = new ObjectMapper();
+        return mapper.readerFor(mapper.getTypeFactory().constructParametricType(Bar.class,t))
+                .readValue(add);
+    }
+
+    private <T> Bar<T> deserialization3(String add, Class t) throws JsonProcessingException {
+
+        ObjectMapper mapper = new ObjectMapper();
+        JavaType typeReference =
+        TypeFactory.defaultInstance().constructType(new TypeReference<Bar<T>>() {
+        });
+        return mapper
+                .readerFor(mapper.getTypeFactory().constructGeneralizedType(typeReference,t))
+                .readValue(add);
+    }
 
     // 序列化
 

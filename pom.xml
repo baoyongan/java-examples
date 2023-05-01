@@ -37,6 +37,7 @@
         <module>java-eg-kafka</module>
         <module>java-eg-reactive</module>
         <module>java-eg-io</module>
+        <module>java-jackson</module>
     </modules>
 
 	<properties>
