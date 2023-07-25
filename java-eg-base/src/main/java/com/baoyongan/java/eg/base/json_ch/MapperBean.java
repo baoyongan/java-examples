@@ -1,5 +1,7 @@
 package com.baoyongan.java.eg.base.json_ch;
 
+import com.alibaba.fastjson.annotation.JSONField;
+
 import java.io.Serializable;
 
 public class MapperBean implements Serializable {
@@ -13,6 +15,7 @@ public class MapperBean implements Serializable {
                 '}';
     }
 
+    @JSONField()
     private String name;
     private Integer age;
     private String addr;

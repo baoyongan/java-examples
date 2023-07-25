@@ -32,11 +32,11 @@
 			<version>1.46</version>
 		</dependency>
 
-		<dependency>
-			<groupId>com.zcbl</groupId>
-			<artifactId>cipher-sm</artifactId>
-			<version>1.0.0</version>
-		</dependency>
+<!--		<dependency>-->
+<!--			<groupId>com.zcbl</groupId>-->
+<!--			<artifactId>cipher-sm</artifactId>-->
+<!--			<version>1.0.0</version>-->
+<!--		</dependency>-->
 
 	</dependencies>
 

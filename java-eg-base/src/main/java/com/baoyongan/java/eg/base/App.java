@@ -39,5 +39,10 @@ public class App
 
         System.out.println(srcFilePath.substring(srcFilePath.lastIndexOf(".")));
         System.out.println(srcFilePath.substring(0,srcFilePath.lastIndexOf(".")));
+
+
+        String a=null;
+        String b= "s"+a+"over";
+        System.out.println(b);
     }
 }

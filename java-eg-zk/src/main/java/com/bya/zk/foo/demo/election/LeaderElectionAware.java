@@ -16,7 +16,6 @@
  */
 package com.bya.zk.foo.demo.election;
 
-import org.apache.zookeeper.recipes.leader.LeaderElectionSupport.EventType;
 
 /**
  * An interface to be implemented by clients that want to receive election
@@ -32,6 +31,6 @@ public interface LeaderElectionAware {
    * 
    * @param eventType
    */
-  public void onElectionEvent(EventType eventType);
+  public void onElectionEvent(LeaderElectionSupport.EventType eventType);
 
 }

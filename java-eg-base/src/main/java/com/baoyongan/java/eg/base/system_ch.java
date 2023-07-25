@@ -7,5 +7,13 @@ public class system_ch {
 
         long max=Long.MAX_VALUE;
         System.out.println(max);
+
+
+
+        String aa="hesss-cba";
+        System.out.println(aa.replace("hesss-",""));
+        String b = aa.replace("hesss-", "");
+        System.out.println(b);
+        System.out.println(aa);
     }
 }

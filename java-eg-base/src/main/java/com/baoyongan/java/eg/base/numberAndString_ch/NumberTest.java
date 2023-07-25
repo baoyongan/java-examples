@@ -2,6 +2,7 @@ package com.baoyongan.java.eg.base.numberAndString_ch;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.text.DecimalFormat;
 
 /**
  * Created by bqct_bya on 2017/10/18.
@@ -65,8 +66,45 @@ public class NumberTest {
         System.out.println(s1);
 
 
-        System.out.println("0%2="+0%2);
-        System.out.println("1%2="+1%2);
-        System.out.println("2%2="+2%2);
+        System.out.println("0%2=" + 0 % 2);
+        System.out.println("1%2=" + 1 % 2);
+        System.out.println("2%2=" + 2 % 2);
+
+
+        System.out.println("=====================================================================");
+
+        System.out.println(fmtMicrometer("111111111111111.21"));
+        System.out.println(fmtMicrometer("11"));
+        System.out.println(fmtMicrometer("111111"));
+        System.out.println(fmtMicrometer("1111111.1"));
+    }
+
+
+    /**
+     * 格式化数字为千分位显示；
+     *
+     * @param text 要格式化的数字
+     * @return
+     */
+    public static String fmtMicrometer(String text) {
+        DecimalFormat df = null;
+        if (text.indexOf(".") > 0) {
+            if (text.length() - text.indexOf(".") - 1 == 0) {
+                df = new DecimalFormat("###,##0.");
+            } else if (text.length() - text.indexOf(".") - 1 == 1) {
+                df = new DecimalFormat("###,##0.0");
+            } else {
+                df = new DecimalFormat("###,##0.00");
+            }
+        } else {
+            df = new DecimalFormat("###,##0");
+        }
+        double number = 0.0;
+        try {
+            number = Double.parseDouble(text);
+        } catch (Exception e) {
+            number = 0.0;
+        }
+        return df.format(number);
     }
 }

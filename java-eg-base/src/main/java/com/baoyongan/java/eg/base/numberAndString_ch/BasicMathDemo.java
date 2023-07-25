@@ -23,5 +23,10 @@ public class BasicMathDemo {
 
         System.out.printf("The min of of %d " + "and %d is %d%n",
                 c, d, Math.min(c, d));
+
+        int dealut=5;
+        System.out.println(Double.parseDouble("50"));
+        int page= (int) Math.ceil(11/(Double.parseDouble("5")));
+        System.out.println(page);
     }
 }

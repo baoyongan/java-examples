@@ -14,9 +14,13 @@ import java.util.concurrent.atomic.AtomicLong;
 public class Atomic {
     public static void main(String[] args) {
         AtomicInteger atomicInteger=new AtomicInteger();
-        AtomicBoolean atomicBoolean=new AtomicBoolean();
+        AtomicBoolean atomicBoolean1=new AtomicBoolean();
         AtomicLong atomicLong=new AtomicLong();
 
 //        VarHandle varHandle=new
+
+        AtomicBoolean atomicBoolean=new AtomicBoolean(false);
+        atomicBoolean.compareAndSet(false,true);
+        System.out.println(atomicBoolean.get());
     }
 }
