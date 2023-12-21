@@ -54,6 +54,23 @@ public class GenericMethod {
         System.out.println();
     }
 
+    /**
+     * 有界类型参数在 算法中的典型应用
+     * @param array
+     * @param elem
+     * @return
+     * @param <T>
+     */
+    public static <T extends Comparable<T>> int countGreanerThan(T[] array, T elem) {
+        int count=0;
+        for (T e : array) {
+            // 大于给定的元素，计数器+1
+            if (e.compareTo(elem)>0)
+                count++;
+        }
+        return count;
+    }
+
     public static void printAllList(List<?> list) {
         for (Object elem : list)
             System.out.println(elem + " ");
