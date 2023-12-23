@@ -1,6 +1,7 @@
 package com.baoyongan.java.eg.base.generic_ch;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -77,10 +78,22 @@ public class GenericMethod {
         System.out.println();
     }
 
+    /**
+     * 通配符的应用
+     * @param list
+     */
     public static void addNumbers(List<? super Integer> list) {
         for (int i = 1; i <= 10; i++) {
             list.add(i);
         }
+    }
+
+    public static double sumOfList (List<? extends Number> list) {
+        double d=0.0;
+        for (Number n : list) {
+            d+=n.doubleValue();
+        }
+        return d;
     }
 
     public static void main(String[] args) {
@@ -97,5 +110,9 @@ public class GenericMethod {
         addNumbers(s);
         List<Integer> s1 = new ArrayList<>();
         addNumbers(s1);
+
+        List<Integer> list = Arrays.asList(1, 2, 3, 4);
+        System.out.println("sum=" + sumOfList(list));
+
     }
 }
