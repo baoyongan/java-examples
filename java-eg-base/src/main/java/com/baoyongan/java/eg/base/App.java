@@ -13,6 +13,12 @@ public class App
 {
     public static void main( String[] args ) throws ParseException {
         System.out.println( "Hello World!" );
+        Character a= null;
+        Character b= ' ';
+        System.out.println(null==a);
+        System.out.println(Character.isWhitespace(b));
+        Character c = '3';
+        System.out.println(c.toString());
 
 //        BigDecimal a=new BigDecimal("0.99");
 //        BigDecimal b=new BigDecimal("0.99");
@@ -41,8 +47,8 @@ public class App
         System.out.println(srcFilePath.substring(0,srcFilePath.lastIndexOf(".")));
 
 
-        String a=null;
-        String b= "s"+a+"over";
-        System.out.println(b);
+//        String a=null;
+//        String b= "s"+a+"over";
+//        System.out.println(b);
     }
 }

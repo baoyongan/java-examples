@@ -49,11 +49,6 @@ public class GenericMethod {
         return "";
     }
 
-    public static void printList(List<Object> list) {
-        for (Object elem : list)
-            System.out.println(elem + " ");
-        System.out.println();
-    }
 
     /**
      * 有界类型参数在 算法中的典型应用
@@ -72,6 +67,35 @@ public class GenericMethod {
         return count;
     }
 
+    /**
+     * 有界上限通配符
+     * @param list
+     * @return
+     */
+    public static double sumOfList (List<? extends Number> list) {
+        double d=0.0;
+        for (Number n : list) {
+            d+=n.doubleValue();
+        }
+        return d;
+    }
+
+
+    /**
+     * 只能打印 List<Object> 类型， 无法打印传 入参是List<Integer>、List<String> 等类型，因为 这些都不是 List<Object> 的子类。
+     * 要想接收所有的类型参数的列表入参，最好使用 无界通配符 List<?>
+     * @param list
+     */
+    public static void printList(List<Object> list) {
+        for (Object elem : list)
+            System.out.println(elem + " ");
+        System.out.println();
+    }
+
+    /**
+     * 使用无界通配符，接收所有 类型参数的 列表入参
+     * @param list
+     */
     public static void printAllList(List<?> list) {
         for (Object elem : list)
             System.out.println(elem + " ");
@@ -79,7 +103,7 @@ public class GenericMethod {
     }
 
     /**
-     * 通配符的应用
+     * 有界下限通配符的应用
      * @param list
      */
     public static void addNumbers(List<? super Integer> list) {
@@ -88,13 +112,6 @@ public class GenericMethod {
         }
     }
 
-    public static double sumOfList (List<? extends Number> list) {
-        double d=0.0;
-        for (Number n : list) {
-            d+=n.doubleValue();
-        }
-        return d;
-    }
 
     public static void main(String[] args) {
         OrderedPair<String, Integer> p1 = new OrderedPair<>("p1", 100);
@@ -108,11 +125,23 @@ public class GenericMethod {
 
         List<Number> s = new ArrayList<>();
         addNumbers(s);
+        System.out.println("sum=" + sumOfList(s));
         List<Integer> s1 = new ArrayList<>();
         addNumbers(s1);
+        System.out.println("sum=" + sumOfList(s));
 
-        List<Integer> list = Arrays.asList(1, 2, 3, 4);
+        List<Integer> list = Arrays.asList(1, 2, 3, 4); // 返回的是固定长度的列表
         System.out.println("sum=" + sumOfList(list));
+
+        // printList(list);  // 会编译错误
+        printAllList(list);
+
+        // List<? extends Integer> 是 List<? extends Number> 的子类。但List<Number> 和 List<Integer> 没有任何关系。
+        List<? extends Integer> intList = new ArrayList<>();
+        List<? extends Number> numList = intList;
+
+
+
 
     }
 }
