@@ -2,7 +2,8 @@ package com.baoyongan.java.eg.thread.threadlocal;
 
 public class ThreadLocalTest {
 
-    private ThreadLocal<Context> contexts=new ThreadLocal<>();
+    private static ThreadLocal<Context> contexts=new ThreadLocal<>();
+
 
     public Context getCurrentContext(String id){
         Context context= contexts.get();

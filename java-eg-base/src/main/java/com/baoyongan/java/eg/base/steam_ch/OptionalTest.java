@@ -5,6 +5,9 @@ import java.util.Optional;
 public class OptionalTest {
 
     public static void main(String[] args) {
+
+        System.out.println(Optional.ofNullable(null).orElse("ttt").toString());
+
         Optional<Integer> op = Optional.of(0);
 
         op.ifPresent((t) -> {

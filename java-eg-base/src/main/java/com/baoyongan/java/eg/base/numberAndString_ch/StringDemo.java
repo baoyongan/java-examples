@@ -3,7 +3,9 @@ package com.baoyongan.java.eg.base.numberAndString_ch;
 public class StringDemo {
     public static void main(String[] args) {
 
-
+        StringBuilder sb=new StringBuilder();
+        sb.append("操作人-系统/人工-汇款/POS/手工登记-缴款XXXX元;汇款/POS/手工登记-缴款XXXX元;");
+        System.out.println(sb.substring(0,sb.length()-1));
         System.err.println("【交警在线】请查收《道路交通事故认定书（简易程序）》(打印地址: http://t.cn/AiE68RTl )。可下载交警在线查看案件详情，并及时保险报案。".length());
         System.err.println("【交警在线】请查收《道路交通事故自行协商协议书》(打印地址: http://47.111.177.170/photobase/photos/signprocesspage//2019-09-10/1310201909101548159740001/97fff998-1ace-44cd-a33c-06fb868270a9picture.html )。可下载交警在线查看案件详情，并及时保险报案。".length());
 
@@ -30,8 +32,8 @@ public class StringDemo {
                 new String(charArray);
         System.out.println(reversePalindrome);
 
-        StringBuilder sb;
-
-        StringBuffer sbb;
+//        StringBuilder sb;
+//
+//        StringBuffer sbb;
     }
 }

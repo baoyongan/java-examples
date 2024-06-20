@@ -15,15 +15,26 @@ public class DecimalFormatDemo {
 
     static public void main(String[] args) {
 
+//        System.out.println(changeToBig("3000000.0", "s"));
+
+        double s=0;
+        System.out.println(s);
+        System.out.println(double2BigDecimal(s));
+        System.out.println(double2BigDecimal(s).toPlainString());
+
         customFormat("###,###.###", 123456.789);
         customFormat("###.##", 123456.789);
         customFormat("000000.000", 123.78);
         customFormat("$###,###.###", 12345.67);
 
 
-        System.out.println(changeToBig("1213132",null));
+        System.out.println(changeToBig("999999999.11",null));
     }
 
+
+    public static BigDecimal double2BigDecimal (double d){
+        return  new BigDecimal(Double.toString(d));
+    }
 
     public static String changeToBig(String stringvalue, String type) {
         String confix = "[0-9]*(\\.?)[0-9]*";
@@ -50,8 +61,16 @@ public class DecimalFormatDemo {
         char[] digit = {'零', '壹', '贰', '叁', '肆', '伍', '陆', '柒', '捌', '玖'}; // 数字表示
         String valStr = new BigDecimal(stringvalue).multiply(new BigDecimal("100")).toString();
         valStr = valStr.split("\\.")[0];
-        String head = valStr.substring(0, valStr.length() - 2); // 取整数部分
-        String rail = valStr.substring(valStr.length() - 2); // 取小数部分
+        int length = valStr.length();
+        String head = "0"; // 默认整数部分是0
+        String rail = null; // 小数部分
+        if (length>2) {
+            head = valStr.substring(0, valStr.length() - 2); // 取整数部分
+            rail = valStr.substring(valStr.length() - 2); // 取小数部分
+        } else {
+            // 小数部分2位自动补0
+            rail = StringUtils.leftPad(valStr,2, "0");
+        }
         String prefix = ""; // 整数部分转化的结果
         String suffix = ""; // 小数部分转化的结果
         // 处理小数点后面的数
