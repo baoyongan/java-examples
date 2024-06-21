@@ -28,7 +28,7 @@ public class DecimalFormatDemo {
         customFormat("$###,###.###", 12345.67);
 
 
-        System.out.println(changeToBig("999999999.11",null));
+        System.out.println(changeToBig("782.00", null));
     }
 
 
@@ -83,39 +83,44 @@ public class DecimalFormatDemo {
             }
         }
         // 处理小数点前面的数
-        char[] chDig = head.toCharArray(); // 把整数部分转化成字符数组
-        char zero = '0'; // 标志'0'表示出现过0
-        byte zeroSerNum = 0; // 连续出现0的次数
-        for (int i = 0; i < chDig.length; i++) { // 循环处理每个数字
-            int idx = (chDig.length - i - 1) % 4; // 取段内位置
-            int vidx = (chDig.length - i - 1) / 4; // 取段位置
-            if (chDig[i] == '0') { // 如果当前字符是0
-                zeroSerNum++; // 连续0次数递增
-                if (zero == '0' && idx != 0) { // 标志 ,连续零，仅读一次零，
-                    zero = digit[0]; // 解决问题2,当一个零位于第0位时，不输出“零”，仅输出“段名”.
-                } else if (idx == 0 && vidx > 0 && zeroSerNum < 4) {
-                    prefix += vunit[vidx - 1];
+        if ("0".equals(head)) {
+            // 整数部分是 0
+            prefix = "零";
+        } else {
+            char[] chDig = head.toCharArray(); // 把整数部分转化成字符数组
+            char zero = '0'; // 标志'0'表示出现过0
+            byte zeroSerNum = 0; // 连续出现0的次数
+            for (int i = 0; i < chDig.length; i++) { // 循环处理每个数字
+                int idx = (chDig.length - i - 1) % 4; // 取段内位置
+                int vidx = (chDig.length - i - 1) / 4; // 取段位置
+                if (chDig[i] == '0') { // 如果当前字符是0
+                    zeroSerNum++; // 连续0次数递增
+                    if (zero == '0' && idx != 0) { // 标志 ,连续零，仅读一次零，
+                        zero = digit[0]; // 解决问题2,当一个零位于第0位时，不输出“零”，仅输出“段名”.
+                    } else if (idx == 0 && vidx > 0 && zeroSerNum < 4) {
+                        prefix += vunit[vidx - 1];
+                        zero = '0';
+                    }
+                    continue;
+                }
+                zeroSerNum = 0; // 连续0次数清零
+                if (zero != '0') { // 如果标志不为0,则加上,例如万,亿什么的
+                    prefix += zero;
                     zero = '0';
                 }
-                continue;
-            }
-            zeroSerNum = 0; // 连续0次数清零
-            if (zero != '0') { // 如果标志不为0,则加上,例如万,亿什么的
-                prefix += zero;
-                zero = '0';
-            }
-            // 取到该位对应数组第几位。
-            int position = chDig[i] - '0';
-            if (!(position == 1 && i == 0 && idx == 1))// 解决问题3
-            // ,即处理10读"拾",而不读"壹拾"
-            {
-                prefix += digit[position]; // 转化该数字表示
-            }
-            if (idx > 0) { // 段内位置表示的值
-                prefix += hunit[idx - 1];
-            }
-            if (idx == 0 && vidx > 0) { // 段名表示的值
-                prefix += vunit[vidx - 1]; // 段结束位置应该加上段名如万,亿
+                // 取到该位对应数组第几位。
+                int position = chDig[i] - '0';
+                if (!(position == 1 && i == 0 && idx == 1))// 解决问题3
+                // ,即处理10读"拾",而不读"壹拾"
+                {
+                    prefix += digit[position]; // 转化该数字表示
+                }
+                if (idx > 0) { // 段内位置表示的值
+                    prefix += hunit[idx - 1];
+                }
+                if (idx == 0 && vidx > 0) { // 段名表示的值
+                    prefix += vunit[vidx - 1]; // 段结束位置应该加上段名如万,亿
+                }
             }
         }
         if (prefix.length() > 0 && !sStr.equals(type)) {
